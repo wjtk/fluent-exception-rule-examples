@@ -82,7 +82,7 @@ public class FluentExpectedExceptionUsageExampleTest {
     public void fluent_rule_any_class_of() {
         thrown.expectAny(IllegalStateException.class, IllegalArgumentException.class);
         //shortcut for
-        thrown.expect().isInstanceOfAny(IllegalStateException.class, IllegalArgumentException.class);
+        thrown.expectAny(IllegalStateException.class, IllegalArgumentException.class);
 
         throw new IllegalArgumentException();
     }
