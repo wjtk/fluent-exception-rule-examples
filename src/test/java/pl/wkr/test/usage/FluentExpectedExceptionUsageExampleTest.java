@@ -21,7 +21,7 @@ public class FluentExpectedExceptionUsageExampleTest {
     //bloat code, explanation  -------------
 
     @Test
-    public void assertj_traditional_way_notEnoughMoney(){
+    public void assertj_traditional_way(){
         coffeeMachine.insertCoin(3);
         try {
             coffeeMachine.getCoffee();
@@ -34,10 +34,10 @@ public class FluentExpectedExceptionUsageExampleTest {
 
 
     @Test
-    public void fluent_rule_notEnoughMoney() throws Exception {
+    public void fluent_rule_way() throws Exception {
         coffeeMachine.insertCoin(3);
 
-        thrown.expect(NotEnoughMoney.class).hasMessage("Not enough money, insert 1$ more");
+        thrown.expect(NotEnoughMoney.class).hasMessage("Not enough money, insert 1$ more").hasNoCause();
         coffeeMachine.getCoffee();
     }
 
@@ -62,6 +62,13 @@ public class FluentExpectedExceptionUsageExampleTest {
     //standard usages --------------------
 
     @Test
+    public void fluent_rule_any_exception() {
+        thrown.expect().hasMessage("exc").hasNoCause();
+
+        throw new IllegalStateException("exc");
+    }
+
+    @Test
     public void fluent_rule_expected_class() {
         thrown.expect(IllegalArgumentException.class);
         //shortcut for:
@@ -79,14 +86,6 @@ public class FluentExpectedExceptionUsageExampleTest {
 
         throw new IllegalArgumentException();
     }
-
-
-    @Test
-    public void fluent_rule_message_of_any_exception() {
-        thrown.expect(RuntimeException.class).hasMessageContaining("sql");
-        throw new RuntimeException("sql error");
-    }
-
 
     @Test
     public void fluent_rule_expect_cause() {
@@ -108,25 +107,18 @@ public class FluentExpectedExceptionUsageExampleTest {
 
     @Test
     public void fluent_rule_many_asserts_1() throws Exception {
-        Exception exc = new RuntimeException("this throwable",
-                            new IllegalStateException("cause",
-                                new IllegalArgumentException("root")));
-
         thrown.expectAny(RuntimeException.class, SQLException.class)
                 .as("exception")
                 .hasMessageContaining("this")
                 .hasRootCauseInstanceOf(IllegalArgumentException.class)
-                .hasCauseInstanceOf(IllegalStateException.class)
-                .isEqualTo(exc)
-                .isIn(new Exception(), exc )
-                .isSameAs(exc);
+                .hasCauseInstanceOf(IllegalStateException.class);
 
         thrown.expectCause().as("exception cause").hasMessage("cause");
         thrown.expectRootCause().as("exception rootCause").hasMessage("root").hasNoCause();
 
-        throw exc;
+        throw new RuntimeException("this throwable",
+                new IllegalStateException("cause",
+                        new IllegalArgumentException("root")));
     }
-
-
 
 }
