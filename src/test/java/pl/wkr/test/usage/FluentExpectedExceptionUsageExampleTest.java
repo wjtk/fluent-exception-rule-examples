@@ -79,27 +79,19 @@ public class FluentExpectedExceptionUsageExampleTest {
 
 
     @Test
-    public void fluent_rule_any_class_of() {
-        thrown.expectAny(IllegalStateException.class, IllegalArgumentException.class);
-        //shortcut for
-        thrown.expectAny(IllegalStateException.class, IllegalArgumentException.class);
-
-        throw new IllegalArgumentException();
-    }
-
-    @Test
     public void fluent_rule_expect_cause() {
-        thrown.expectCause().isInstanceOf(IllegalAccessException.class).hasMessageContaining("to low");
+        thrown.expectCause().hasMessageContaining("to low");
+        thrown.expectCause(IllegalAccessException.class).hasMessageContaining("memory");
 
         throw new RuntimeException(new IllegalAccessException("to low memory"));
     }
 
     @Test
     public void fluent_rule_expect_root_cause() {
-        thrown.expectCause().isInstanceOf(IllegalStateException.class);
-        thrown.expectRootCause().isInstanceOf(IllegalArgumentException.class);
+        thrown.expectRootCause().hasMessageContaining("is null");
+        thrown.expectRootCause(IllegalArgumentException.class).hasMessageContaining("argument");
 
-        throw new RuntimeException(new IllegalStateException(new IllegalArgumentException()));
+        throw new RuntimeException(new IllegalStateException(new IllegalArgumentException("argument is null")));
 
     }
 
@@ -107,7 +99,7 @@ public class FluentExpectedExceptionUsageExampleTest {
 
     @Test
     public void fluent_rule_many_asserts_1() throws Exception {
-        thrown.expectAny(RuntimeException.class, SQLException.class)
+        thrown.expect(RuntimeException.class)
                 .as("exception")
                 .hasMessageContaining("this")
                 .hasRootCauseInstanceOf(IllegalArgumentException.class)

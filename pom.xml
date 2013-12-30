@@ -9,7 +9,7 @@
     <version>${fluent-rule.version}</version>
 
     <properties>
-        <fluent-rule.version>0.1.0</fluent-rule.version>
+        <fluent-rule.version>0.2.0</fluent-rule.version>
         <junit.version>4.11</junit.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

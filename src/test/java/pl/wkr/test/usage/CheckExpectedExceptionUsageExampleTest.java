@@ -45,4 +45,5 @@ public class CheckExpectedExceptionUsageExampleTest {
 
         coffeeMachine.getCoffee();
     }
+
 }
