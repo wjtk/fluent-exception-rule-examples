@@ -1,0 +1,4 @@
+language: java
+before_install:
+    - chmod -R 777 script/*.sh
+    - ./script/clone-rule-and-install.sh

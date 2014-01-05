@@ -6,7 +6,7 @@
 
     <groupId>pl.wkr.test</groupId>
     <artifactId>fluent-exception-rule-example</artifactId>
-    <version>${fluent-rule.version}</version>
+    <version>0.2.0</version>
 
     <properties>
         <fluent-rule.version>0.2.0</fluent-rule.version>
