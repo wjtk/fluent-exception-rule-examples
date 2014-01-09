@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.wkr.test</groupId>
-    <artifactId>fluent-exception-rule-example</artifactId>
+    <artifactId>fluent-exception-rule-examples</artifactId>
     <version>0.2.0</version>
 
     <properties>
