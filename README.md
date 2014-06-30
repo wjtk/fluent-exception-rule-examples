@@ -2,4 +2,6 @@
 
 [fluent-exception-rule] examples
 
+Compilation requires java 8. 
+
 [fluent-exception-rule]: https://github.com/wjtk/fluent-exception-rule

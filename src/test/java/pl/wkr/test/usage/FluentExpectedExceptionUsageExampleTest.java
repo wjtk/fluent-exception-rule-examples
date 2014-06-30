@@ -18,8 +18,7 @@ public class FluentExpectedExceptionUsageExampleTest {
 
     private CoffeeMachine coffeeMachine = new CoffeeMachine(4);
 
-    //bloat code, explanation  -------------
-
+    //bloat code, easy to forget failBecauseExceptionWasNotThrown(...)
     @Test
     public void assertj_traditional_way(){
         coffeeMachine.insertCoin(3);
@@ -33,6 +32,7 @@ public class FluentExpectedExceptionUsageExampleTest {
     }
 
 
+    //more readable, no bloat code
     @Test
     public void fluent_rule_way() throws Exception {
         coffeeMachine.insertCoin(3);
@@ -40,6 +40,7 @@ public class FluentExpectedExceptionUsageExampleTest {
         thrown.expect(NotEnoughMoney.class).hasMessage("Not enough money, insert 1$ more").hasNoCause();
         coffeeMachine.getCoffee();
     }
+
 
     @Test
     public void assertj_constructor() {
@@ -98,7 +99,7 @@ public class FluentExpectedExceptionUsageExampleTest {
     //rich usages -------------------
 
     @Test
-    public void fluent_rule_many_asserts_1() throws Exception {
+    public void fluent_rule_many_asserts() throws Exception {
         thrown.expect(RuntimeException.class)
                 .as("exception")
                 .hasMessageContaining("this")

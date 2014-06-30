@@ -6,18 +6,20 @@
 
     <groupId>pl.wkr.test</groupId>
     <artifactId>fluent-exception-rule-examples</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0-SNAPSHOT</version>
 
     <properties>
-        <fluent-rule.version>0.2.0</fluent-rule.version>
+        <fluent-rule.version>0.3.0-SNAPSHOT</fluent-rule.version>
         <junit.version>4.11</junit.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <compiler-plugin.version>3.1</compiler-plugin.version>
+        <surefire-plugin.version>2.17</surefire-plugin.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>pl.wkr.test</groupId>
@@ -32,6 +34,52 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire-plugin.version}</version>
+            </plugin>
+        </plugins>
     </build>
+
+
+    <!-- when JAVA_8_HOME is present, use it when java8 is not default jdk on your system -->
+    <!-- profile activation from system property existence doesn't work, so use: mvn -Pjava8home -->
+    <profiles>
+        <profile>
+            <id>java8home</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${compiler-plugin.version}</version>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <fork>true</fork>
+                            <executable>${JAVA_8_HOME}/bin/javac</executable>
+                            <compilerVersion>1.8</compilerVersion>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${surefire-plugin.version}</version>
+                        <configuration>
+                            <jvm>${JAVA_8_HOME}/bin/java</jvm>
+                            <forkMode>once</forkMode>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
