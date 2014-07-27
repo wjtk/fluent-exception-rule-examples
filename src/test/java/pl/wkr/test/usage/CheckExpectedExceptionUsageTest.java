@@ -10,7 +10,7 @@ import pl.wkr.fluentrule.usage.NotEnoughMoney;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CheckExpectedExceptionUsageExampleTest {
+public class CheckExpectedExceptionUsageTest {
 
     @Rule
     public CheckExpectedException thrown = CheckExpectedException.none();

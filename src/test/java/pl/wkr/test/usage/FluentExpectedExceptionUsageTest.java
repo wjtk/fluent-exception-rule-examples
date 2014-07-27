@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class FluentExpectedExceptionUsageExampleTest {
+public class FluentExpectedExceptionUsageTest {
 
     @Rule
     public FluentExpectedException thrown = FluentExpectedException.none();

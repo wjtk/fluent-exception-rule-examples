@@ -9,7 +9,7 @@ import pl.wkr.test.usage.helper.SQLExceptionAssert;
 
 import java.sql.SQLException;
 
-public class FluentExpectedExceptionExtendingUsageExampleTest {
+public class FluentExpectedExceptionWithCustomThrowableAssertTest {
 
     @Rule
     public FluentExpectedException thrown = FluentExpectedException.none();
@@ -36,11 +36,4 @@ public class FluentExpectedExceptionExtendingUsageExampleTest {
         thrown.expectRootCauseWith(SQLExceptionAssert.class).hasErrorCode(12).hasMessageContaining("primary key");
         throw  new Exception( new Exception(new SQLException("primary key", "cursor", 12)));
     }
-
-
-
-
-
-
-
 }
