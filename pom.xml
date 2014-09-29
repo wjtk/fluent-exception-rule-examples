@@ -22,7 +22,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>pl.wkr.test</groupId>
+            <groupId>pl.wkr</groupId>
             <artifactId>fluent-exception-rule</artifactId>
             <version>${fluent-rule.version}</version>
             <scope>test</scope>
