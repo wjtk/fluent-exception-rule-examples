@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# to check locally if everything is ok (jar-jar works)
+
 # exit on first error
 set -e
 

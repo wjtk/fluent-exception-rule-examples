@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.wkr.test</groupId>
+    <groupId>pl.wkr</groupId>
     <artifactId>fluent-exception-rule-examples</artifactId>
     <version>${fluent-rule.version}</version>
 
     <properties>
-        <fluent-rule.version>0.3.0-SNAPSHOT</fluent-rule.version>
+        <fluent-rule.version>1.0.0</fluent-rule.version>
         <junit.version>4.11</junit.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,6 +80,19 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+
+        <!-- use this profile to check if everything is ok on ossr staging, change also fer version -->
+        <profile>
+            <id>fer-staging</id>
+            <repositories>
+                <repository>
+                    <id>ossrh</id>
+                    <name>ossrh</name>
+                    <url>https://oss.sonatype.org/content/groups/staging</url>
+                </repository>
+            </repositories>
         </profile>
     </profiles>
 </project>
